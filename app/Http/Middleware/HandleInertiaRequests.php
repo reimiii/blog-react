@@ -2,6 +2,7 @@
 
 namespace App\Http\Middleware;
 
+use App\Models\Category;
 use Illuminate\Http\Request;
 use Inertia\Middleware;
 use Tightenco\Ziggy\Ziggy;
@@ -34,6 +35,8 @@ class HandleInertiaRequests extends Middleware
      */
     public function share(Request $request)
     {
+        $categoriesOnNavbar = Category::get();
+
         return array_merge(parent::share($request), [
             'auth' => [
                 'user' => $request->user(),
