@@ -16,7 +16,7 @@ export default function Navbar() {
                             href={route('home')}
                             className="mr-3 text-lg font-semibold capitalize text-white"
                         >
-                            RnD
+                            {import.meta.env.VITE_APP_NAME}
                         </Link>
 
                         <div className="flex flex-1 items-center justify-between">
