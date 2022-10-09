@@ -7,15 +7,15 @@ import Grid from "@/Components/Grid";
 import ArticleBlock from "@/Components/ArticleBlock";
 import Pagination from "@/Components/Pagination";
 
-export default function Show({ category, ...props }) {
+export default function Index({ category, ...props }) {
     const { data: articles, meta, links } = props.articles;
     return (
         <div>
-            <Head title={category.name} />
+            <Head title="The articles" />
             <Header>
-                <Header.Title>{category.name}</Header.Title>
+                <Header.Title>The articles</Header.Title>
                 <Header.Subtitle>
-                    This page will show you the articles about {category.name}
+                    Read if you want to learn something new.
                 </Header.Subtitle>
             </Header>
 
@@ -38,4 +38,4 @@ export default function Show({ category, ...props }) {
     );
 }
 
-Show.layout = (page) => <App children={page} />;
+Index.layout = (page) => <App children={page} />;
