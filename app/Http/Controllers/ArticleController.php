@@ -3,6 +3,7 @@
 namespace App\Http\Controllers;
 
 use App\Http\Resources\ArticleItemResource;
+use App\Http\Resources\ArticleSingleResource;
 use App\Models\Article;
 use Illuminate\Http\Request;
 
@@ -51,11 +52,13 @@ class ArticleController extends Controller
      * Display the specified resource.
      *
      * @param  \App\Models\Article  $article
-     * @return \Illuminate\Http\Response
+     * @return \Inertia\Response|\Inertia\ResponseFactory
      */
     public function show(Article $article)
     {
-        return $article;
+        return inertia('Articles/Show', [
+            'article' => new ArticleSingleResource($article)
+        ]);
     }
 
     /**
