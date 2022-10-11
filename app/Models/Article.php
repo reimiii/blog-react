@@ -11,6 +11,8 @@ class Article extends Model
 {
     use HasFactory;
 
+    protected $guarded = [];
+
     public function getRouteKeyName(): string
     {
         return 'slug';
@@ -19,6 +21,11 @@ class Article extends Model
     public function tags(): BelongsToMany
     {
         return $this->belongsToMany(Tag::class);
+    }
+
+    public function category(): BelongsTo
+    {
+        return $this->belongsTo(Category::class);
     }
 
     public function author(): BelongsTo
