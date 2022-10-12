@@ -1,6 +1,6 @@
 import React from 'react';
 
-export default function InputFile({ onChange, accept = '.jpg, .png, .jpeg' }) {
+export default function InputFile({ onChange, accept = '.jpg, .png, .jpeg, .gif' }) {
     return (
         <input
             accept={accept}
