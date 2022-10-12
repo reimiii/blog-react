@@ -5,7 +5,9 @@ export default function ArticleBlock({ article }) {
     return (
         <div className="border shadow-sm rounded-lg overflow-hidden">
             {article.picture ?
-                <img src={article.picture} alt=""/>
+                <Link href={route('articles.show', article.slug)} >
+                    <img className='object-cover h-48 w-96' src={article.picture} alt=""/>
+                </Link>
                  : null}
                 <div className="px-4 py-6">
                     {article.tags.length ? (
@@ -13,7 +15,7 @@ export default function ArticleBlock({ article }) {
                             {article.tags.map((tag) => (
                                 <Link
                                     key={tag.slug}
-                                    href="#"
+                                    href={route('tags.show', tag.slug)}
                                     className="text-black hover:bg-gray-200 bg-gray-100 transition duration-200 px-2 py-1 rounded-md"
                                 >
                                     {tag.name}
@@ -23,7 +25,7 @@ export default function ArticleBlock({ article }) {
                     ) : null}
 
                     <Link href={route('articles.show', article.slug)}>
-                        <h1 className="text-gray-800 md:line-clamp-1 font-semibold tracking-tight">
+                        <h1 className="text-gray-800 md:line-clamp-2 font-semibold tracking-tight">
                             {article.title}
                         </h1>
 
