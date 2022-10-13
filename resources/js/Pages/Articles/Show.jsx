@@ -5,8 +5,11 @@ import Header from '@/Components/Header';
 import Container from '@/Components/Container';
 import Markdown from "@/Components/Markdown";
 
-export default function Show({article}) {
-    // const { data: articles, meta, links } = props.articles;
+export default function Show(props) {
+
+    const {data:article, related:articles} = props.article;
+
+    // console.log(props.article)
     return (
         <div>
             <Head title={article.title}/>
@@ -23,7 +26,7 @@ export default function Show({article}) {
                             {article.tags.map(tag => (
                                 <Link
                                     className='bg-gray-700 text-white px-2 py-1 text-xs font-medium hover:bg-gray-600 transition duration-200 rounded shadow border-t border-gray-600'
-                                    key={tag.slug} href={'#'}>{tag.name}</Link>
+                                    key={tag.slug} href={route('tags.show', tag.slug)}>{tag.name}</Link>
                             ))}
                         </div>
                         : null}
@@ -45,8 +48,23 @@ export default function Show({article}) {
                         ) : null}
                         <Markdown>{article.body}</Markdown>
                     </div>
-                    <div className="col-span-3">
-                        lorem ipsum
+                    <div className="col-span-4">
+                        <h4 className='text-xl font-semibold text-black border-b pb-2 mb-4'>
+                            More about {article.category.name}
+                        </h4>
+                        {articles.length ? (
+                            <ul className='space-y-2'>
+                                {articles.map(article => (
+                                    <li key={article.slug}>
+                                        <Link
+                                            className='line-clamp-1 text-gray-700 hover:text-gray-600 transition duration-200 underline'
+                                            href={route('articles.show', article.slug)} >
+                                            {article.title}
+                                        </Link>
+                                    </li>
+                                ))}
+                            </ul>
+                        ) : null}
                     </div>
                 </div>
             </Container>

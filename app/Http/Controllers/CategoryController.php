@@ -12,6 +12,7 @@ class CategoryController extends Controller
     public function show(Category $category)
     {
         $articles = Article::query()
+            ->whereBelongsTo($category)
             ->select('title', 'picture', 'slug', 'user_id', 'teaser', 'created_at', 'id')
             ->with(['tags' => fn($tag) => $tag->select('name', 'slug')])
             ->latest()
