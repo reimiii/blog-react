@@ -50,7 +50,7 @@ export default function Show(props) {
                     </div>
                     <div className="col-span-4">
                         <h4 className='text-xl font-semibold text-black border-b pb-2 mb-4'>
-                            More about {article.category.name}
+                           Related categories : {article.category.name}
                         </h4>
                         {articles.length ? (
                             <ul className='space-y-2'>

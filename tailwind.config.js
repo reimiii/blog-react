@@ -12,7 +12,9 @@ module.exports = {
     theme: {
         extend: {
             fontFamily: {
-                sans: ['Work Sans', ...defaultTheme.fontFamily.sans],
+                // sans: ['Work Sans', ...defaultTheme.fontFamily.sans],
+                sans: ['Open Sans', ...defaultTheme.fontFamily.sans],
+                mono: ['Fira Code', ...defaultTheme.fontFamily.sans],
             },
         },
     },
