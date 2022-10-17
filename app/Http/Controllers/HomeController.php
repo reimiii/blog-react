@@ -11,14 +11,16 @@ class HomeController extends Controller
     /**
      * Handle the incoming request.
      *
-     * @param  \Illuminate\Http\Request  $request
+     * @param \Illuminate\Http\Request $request
      * @return \Illuminate\Http\Resources\Json\AnonymousResourceCollection|\Inertia\Response|\Inertia\ResponseFactory
      */
     public function __invoke(Request $request)
     {
+//        auth()->loginUsingId(3);
+//        dd($request->user()->hasRole());
         $articles = Article::query()
             ->select('title', 'picture', 'slug', 'user_id', 'teaser', 'created_at', 'id')
-            ->with(['tags' => fn($tag) => $tag->select('name', 'slug') ])
+            ->with(['tags' => fn($tag) => $tag->select('name', 'slug')])
             ->limit(9)
             ->latest()
             ->get();

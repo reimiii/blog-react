@@ -17,11 +17,11 @@ class ArticleTableResource extends JsonResource
             'id' => $this->id,
             'author' => $this->author,
             'title' => $this->title,
+            'slug' => $this->slug,
             'category' => [
                 'name' => $this->category->name,
                 'url' => route('categories.show', $this->category),
             ],
-            'url' => route('articles.show', $this->slug),
             'tags' => $this->tags->map(fn($tag) => [
                 'name' => $tag->name,
                 'url' => route('tags.show', $tag),

@@ -19,7 +19,7 @@ class HandleInertiaRequests extends Middleware
     /**
      * Determine the current asset version.
      *
-     * @param  \Illuminate\Http\Request  $request
+     * @param \Illuminate\Http\Request $request
      * @return string|null
      */
     public function version(Request $request)
@@ -30,7 +30,7 @@ class HandleInertiaRequests extends Middleware
     /**
      * Define the props that are shared by default.
      *
-     * @param  \Illuminate\Http\Request  $request
+     * @param \Illuminate\Http\Request $request
      * @return mixed[]
      */
     public function share(Request $request)
@@ -43,7 +43,11 @@ class HandleInertiaRequests extends Middleware
 
         return array_merge(parent::share($request), [
             'auth' => [
-                'user' => $request->user(),
+                'user' => [
+                    'name' => $request->user()?->name,
+                    'email' => $request->user()?->email,
+                    'hasRole' => $request->user()?->hasRole(),
+                ]
             ],
             'categories_global' => cache()->rememberForever('categories_global', fn() => $categoriesGlobal),
             'ziggy' => function () use ($request) {

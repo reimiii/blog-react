@@ -2,6 +2,8 @@
 
 namespace App\Http\Controllers;
 
+use App\Http\Requests\ArticleRequest;
+use App\Http\Resources\ArticleItemResource;
 use App\Http\Resources\ArticleSingleResource;
 use App\Http\Resources\ArticleTableResource;
 use App\Models\Article;
@@ -9,6 +11,7 @@ use App\Models\Category;
 use App\Models\Tag;
 use Illuminate\Http\Request;
 use Illuminate\Http\Response;
+use Illuminate\Support\Facades\Storage;
 use Inertia\ResponseFactory;
 
 class ArticleController extends Controller
@@ -49,13 +52,13 @@ class ArticleController extends Controller
     public function index()
     {
         $articles = Article::query()
-            ->select('title', 'slug', 'user_id', 'teaser', 'created_at', 'id')
+            ->select('title', 'picture', 'slug', 'user_id', 'teaser', 'created_at', 'id')
             ->with(['tags' => fn($tag) => $tag->select('name', 'slug')])
             ->latest()
-            ->fastPaginate();
+            ->fastPaginate(9);
 
         return inertia('Articles/Index', [
-            'articles' => ArticleTableResource::collection($articles)
+            'articles' => ArticleItemResource::collection($articles)
         ]);
     }
 
@@ -75,20 +78,11 @@ class ArticleController extends Controller
     /**
      * Store a newly created resource in storage.
      *
-     * @param Request $request
+     * @param ArticleRequest $request
      * @return \Illuminate\Http\RedirectResponse
      */
-    public function store(Request $request)
+    public function store(ArticleRequest $request)
     {
-        $request->validate([
-            'title' => ['required', 'string', 'min:3', 'max:255'],
-            'picture' => ['nullable', 'image', 'mimes:png,jpg,jpeg,gif', 'max:2048'],
-            'teaser' => ['required', 'string', 'min:3', 'max:255'],
-            'body' => ['required', 'string', 'min:3'],
-            'category_id' => ['required', 'exists:categories,id'],
-            'tags' => ['required', 'array'],
-        ]);
-
         $picture = $request->file('picture');
 
         $article = $request->user()->articles()->create([
@@ -138,33 +132,64 @@ class ArticleController extends Controller
      * Show the form for editing the specified resource.
      *
      * @param Article $article
-     * @return Response
+     * @return \Inertia\Response|ResponseFactory
      */
     public function edit(Article $article)
     {
-        //
+        return inertia('Articles/Edit', [
+            'article' => $article->load([
+                'tags' => fn($tag) => $tag->select('id', 'name'),
+                'category' => fn($category) => $category->select('id', 'name')
+            ]),
+            'tags' => $this->tags,
+            'categories' => $this->categories
+        ]);
     }
 
     /**
      * Update the specified resource in storage.
      *
-     * @param Request $request
+     * @param ArticleRequest $request
      * @param Article $article
-     * @return Response
+     * @return \Illuminate\Http\RedirectResponse
      */
-    public function update(Request $request, Article $article)
+    public function update(ArticleRequest $request, Article $article)
     {
-        //
+        $picture = $request->file('picture');
+
+        $article->update([
+            'title' => $title = $request->title,
+            'teaser' => $request->teaser,
+            'category_id' => $request->category_id,
+            'body' => $request->body,
+            'picture' => $request->hasFile('picture')
+                ? $picture->storeAs('images/articles', $article->slug . '.' . $picture->extension())
+                : $article->picture
+
+        ]);
+
+        $article->tags()->sync($request->tags, true);
+
+        return to_route('articles.show', $article);
     }
 
     /**
      * Remove the specified resource from storage.
      *
      * @param Article $article
-     * @return Response
+     * @return \Illuminate\Http\RedirectResponse
      */
     public function destroy(Article $article)
     {
-        //
+//        dd($article->id);
+
+        if ($article->picture) {
+            Storage::delete($article->picture);
+        }
+
+        $article->tags()->detach();
+        $article->delete();
+
+        return back();
     }
 }

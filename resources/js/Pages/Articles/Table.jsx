@@ -41,7 +41,9 @@ export default function ArticleTable(props) {
                                 <Table.Td>
                                     <div className="flex gap-x-1">
                                         {article.tags.map((tag, i) => (
-                                            <Link className='bg-gray-100 hover:bg-gray-300 transition font-medium text-xs px-2 py-1 rounded' href={tag.url} key={i}>
+                                            <Link
+                                                className='bg-gray-100 hover:bg-gray-300 transition font-medium text-xs px-2 py-1 rounded'
+                                                href={tag.url} key={i}>
                                                 {tag.name}
                                             </Link>
                                         ))}
@@ -50,18 +52,24 @@ export default function ArticleTable(props) {
                                 <td>
                                     <Table.Dropdown>
                                         <Table.DropdownItem
-                                            href={'#'}
+                                            href={route('articles.show', article.slug)}
                                         >
                                             View
                                         </Table.DropdownItem>
                                         <Table.DropdownItem
-                                            href={'#'}
-
+                                            href={route('articles.edit', article.slug)}
                                         >
                                             Edit
                                         </Table.DropdownItem>
                                         <Table.DropdownButton
-                                            href={'#'}
+                                            onClick={() => {
+                                                ask({
+                                                    url: route('articles.destroy', article.slug),
+                                                    method: 'delete',
+                                                    message: 'Are you sure you want to delete this article?',
+                                                })
+
+                                            }}
                                             className="hover:bg-rose-50 hover:text-rose-500"
                                         >
                                             Delete
