@@ -2,6 +2,7 @@
 
 namespace App\Models;
 
+use App\Enums\ArticleStatus;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
 use Illuminate\Database\Eloquent\Relations\BelongsTo;
@@ -12,6 +13,10 @@ class Article extends Model
     use HasFactory;
 
     protected $guarded = [];
+
+    protected $casts = [
+      'status' => ArticleStatus::class,
+    ];
 
     public function getRouteKeyName(): string
     {

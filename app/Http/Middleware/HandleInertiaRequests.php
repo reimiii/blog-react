@@ -48,7 +48,7 @@ class HandleInertiaRequests extends Middleware
 //                    'username' => $request->user()->username,
                     'email' => $request->user()->email,
                     'hasRole' => $request->user()?->hasRole(),
-//                    'isAdmin' => $request->user()?->hasAnyRoles(['admin']),
+                    'isAdmin' => $request->user()?->hasAnyRoles(['admin']),
                 ] : null,
             ],
             'categories_global' => cache()->rememberForever('categories_global', fn() => $categoriesGlobal),

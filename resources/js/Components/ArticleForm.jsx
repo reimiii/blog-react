@@ -10,7 +10,7 @@ import Editor from "@/Components/Editor";
 import {usePage} from "@inertiajs/inertia-react";
 
 export default function ArticleForm({data, setData}) {
-    const { errors, tags, categories } = usePage().props;
+    const {errors, tags, categories, statuses, auth} = usePage().props;
 
     const onChange = (e) => setData(e.target.name, e.target.value);
 
@@ -84,6 +84,22 @@ export default function ArticleForm({data, setData}) {
                 />
                 {errors.body ? (<Error value={errors.body}/>) : null}
             </div>
+            {auth.user.isAdmin ? (
+                <div className="grid grid-cols-12 gap-6 mb-6">
+                    <div className="col-span-4">
+                        <div className="mb-6">
+                            <Select
+                                value={data.status}
+                                data={statuses}
+                                onChange={(e) => setData('status', e)}
+                            />
+                            {errors.status ? (
+                                <Error value={errors.status}/>
+                            ) : null}
+                        </div>
+                    </div>
+                </div>
+            ) : null}
         </>
     );
 }
