@@ -43,11 +43,13 @@ class HandleInertiaRequests extends Middleware
 
         return array_merge(parent::share($request), [
             'auth' => [
-                'user' => [
-                    'name' => $request->user()?->name,
-                    'email' => $request->user()?->email,
+                'user' => $request->user() ? [
+                    'name' => $request->user()->name,
+//                    'username' => $request->user()->username,
+                    'email' => $request->user()->email,
                     'hasRole' => $request->user()?->hasRole(),
-                ]
+//                    'isAdmin' => $request->user()?->hasAnyRoles(['admin']),
+                ] : null,
             ],
             'categories_global' => cache()->rememberForever('categories_global', fn() => $categoriesGlobal),
             'ziggy' => function () use ($request) {

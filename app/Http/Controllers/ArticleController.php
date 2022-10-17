@@ -21,6 +21,7 @@ class ArticleController extends Controller
 
     public function __construct()
     {
+        $this->middleware('hasRole')->only('table', 'create', 'store', 'edit', 'update', 'destroy');
         $this->middleware('auth')->except(['index', 'show']);
         $this->tags = Tag::select('id', 'name')->get();
         $this->categories = Category::select('id', 'name')->get();

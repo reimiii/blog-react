@@ -16,15 +16,13 @@ class HomeController extends Controller
      */
     public function __invoke(Request $request)
     {
-//        auth()->loginUsingId(3);
-//        dd($request->user()->hasRole());
         $articles = Article::query()
             ->select('title', 'picture', 'slug', 'user_id', 'teaser', 'created_at', 'id')
             ->with(['tags' => fn($tag) => $tag->select('name', 'slug')])
             ->limit(9)
             ->latest()
             ->get();
-//        return ArticleItemResource::collection($articles);
+
         return inertia('Home', [
             'articles' => ArticleItemResource::collection($articles)
         ]);
