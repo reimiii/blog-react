@@ -24,7 +24,7 @@ class ArticleController extends Controller
 
     public function __construct()
     {
-        $this->middleware('hasRole')->only('table', 'create', 'store', 'edit', 'update', 'destroy');
+        $this->middleware('hasRole')->only('table', 'currentTable', 'create', 'store', 'edit', 'update', 'destroy');
         $this->middleware('auth')->except(['index', 'show']);
         $this->tags = Tag::select('id', 'name')->get();
         $this->categories = Category::select('id', 'name')->get();
@@ -37,17 +37,23 @@ class ArticleController extends Controller
     public function table(Request $request)
     {
         $articles = Article::query()
-            ->with([
-                'author',
-                'tags' => fn($query) => $query->select('id', 'name', 'slug'),
-                'category' => fn($query) => $query->select('id', 'name', 'slug'),
-            ])
             ->when(!$request->user()->hasAnyRoles(['admin']), fn($query) => $query->whereBelongsTo($request->user(), 'author'))
             ->latest()
             ->fastPaginate(10);
-//        return ArticleTableResource::collection($articles);
 
         return inertia('Articles/Table', [
+            'articles' => ArticleTableResource::collection($articles),
+        ]);
+    }
+
+    public function currentTable(Request $request)
+    {
+        $articles = Article::query()
+            ->whereBelongsTo($request->user(), 'author')
+            ->latest()
+            ->fastPaginate(10);
+
+        return inertia('Articles/TableCurrent', [
             'articles' => ArticleTableResource::collection($articles),
         ]);
     }

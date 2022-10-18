@@ -43,31 +43,48 @@ export default function Navbar() {
                                         <DropdownMenu label={auth.user.name}>
                                             <DropdownMenu.Link
                                                 href={route('dashboard')}
+                                                isActive={route().current('dashboard')}
                                             >
                                                 Dashboard
                                             </DropdownMenu.Link>
-                                            <DropdownMenu.Link href={`/u/${auth.user.username}`}>
+                                            <DropdownMenu.Link
+                                                href={`/u/${auth.user.username}`}
+                                                isActive={route().current('users.show-mm')}
+                                            >
                                                 My profile
                                             </DropdownMenu.Link>
-                                            {/*<DropdownMenu.Link href={'#'}>*/}
-                                            {/*    Settings*/}
-                                            {/*</DropdownMenu.Link>*/}
                                             {auth.user.hasRole ?
                                                 <>
-
                                                     <DropdownMenu.Divider/>
 
-                                                    <DropdownMenu.Link href={route('articles.create')}>
+
+                                                    <DropdownMenu.Link
+                                                        href={route('articles.create')}
+                                                        isActive={route().current('articles.create')}
+                                                    >
                                                         New article
                                                     </DropdownMenu.Link>
 
-                                                    <DropdownMenu.Link href={route('articles.table')}>
-                                                        My articles
+                                                    <DropdownMenu.Link
+                                                        href={route('articles.table')}
+                                                        isActive={route().current('articles.table')}
+                                                    >
+                                                        {auth.user.isAdmin ? 'Manage articles' : 'My articles'}
                                                     </DropdownMenu.Link>
+
+                                                    {auth.user.isAdmin ? (
+                                                        <DropdownMenu.Link
+                                                            href={route('articles.table.current')}
+                                                            isActive={route().current('articles.table.current')}
+                                                        >
+                                                            Current articles
+                                                        </DropdownMenu.Link>
+                                                    ) : null}
 
                                                     <DropdownMenu.Divider/>
                                                 </>
                                                 : null}
+
 
                                             <DropdownMenu.Link
                                                 href={route('logout')}

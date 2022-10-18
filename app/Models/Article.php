@@ -14,7 +14,7 @@ class Article extends Model
 
     protected $guarded = [];
 
-    protected $with = ['author', 'tags'];
+    protected $with = ['author', 'tags', 'category'];
 
     protected $casts = [
       'status' => ArticleStatus::class,

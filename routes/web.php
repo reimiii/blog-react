@@ -16,6 +16,9 @@ Route::get('/', HomeController::class)
 Route::get('articles/table', [ArticleController::class, 'table'])
     ->name('articles.table');
 
+Route::get('articles/a/table', [ArticleController::class, 'currentTable'])
+    ->name('articles.table.current');
+
 Route::resource('articles', ArticleController::class);
 
 Route::get('tags/{tag:slug}', [TagController::class, 'show'])
@@ -28,6 +31,6 @@ Route::get('dashboard', DashboardController::class)
     ->middleware(['auth'])
     ->name('dashboard');
 
-Route::get('/u/{user:username}', [UserController::class, 'show'])->name('users.show');
+Route::get('/u/{user:username}', [UserController::class, 'show'])->name('users.show-mm');
 
 require __DIR__ . '/auth.php';
