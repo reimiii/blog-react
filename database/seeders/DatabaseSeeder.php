@@ -15,15 +15,17 @@ class DatabaseSeeder extends Seeder
     public function run()
     {
 
-         \App\Models\User::factory()->create([
-             'name' => 'Rnd Team',
-             'email' => 'team@rnd.com',
-         ]);
+        \App\Models\User::factory()->create([
+            'name' => 'Rnd Team',
+            'email' => 'team@rnd.com',
+            'username' => 'rndteam',
+        ]);
 
-            $this->call([
-                CategorySeeder::class,
-                TagSeeder::class,
-                ArticleSeeder::class,
-            ]);
+        $this->call([
+            CategorySeeder::class,
+            TagSeeder::class,
+            ArticleSeeder::class,
+            RoleSeeder::class,
+        ]);
     }
 }

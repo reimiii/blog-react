@@ -14,7 +14,7 @@ export default function Create({tags, statuses}) {
         category_id: '',
         body: '',
         picture: '',
-        tags: [tags[0], tags[1]],
+        tags: [],
         status: statuses[0],
     });
     // console.log(categories);

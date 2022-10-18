@@ -102,7 +102,6 @@ class ArticleController extends Controller
             'status' => $request->status,
             'body' => $request->body,
             'picture' => $request->hasFile('picture') ? $picture->storeAs('images/articles', $slug . '.' . $picture->extension()) : null
-
         ]);
 
         $article->tags()->attach($request->tags);
@@ -124,6 +123,7 @@ class ArticleController extends Controller
 
         $articles = Article::query()
             ->select('id', 'title', 'slug')
+            ->published()
             ->whereNot('id', $article->id)
             ->whereBelongsTo($article->category)
             ->limit(10)

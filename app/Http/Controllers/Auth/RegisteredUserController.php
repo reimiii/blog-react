@@ -47,6 +47,7 @@ class RegisteredUserController extends Controller
         ]), function ($user) {
             $user->update([
                 'username' => 'u' . $user->id . now()->timestamp,
+                $user->roles()->attach(2),
             ]);
             event(new Registered($user));
             Auth::login($user);

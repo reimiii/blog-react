@@ -2,6 +2,7 @@
 
 namespace App\Http\Middleware;
 
+use App\Models\Article;
 use App\Models\Category;
 use Illuminate\Http\Request;
 use Inertia\Middleware;
@@ -47,6 +48,7 @@ class HandleInertiaRequests extends Middleware
                     'name' => $request->user()->name,
                     'username' => $request->user()->username,
                     'email' => $request->user()->email,
+                    'roles' => $request->user()->roles->pluck('name'),
                     'hasRole' => $request->user()?->hasRole(),
                     'isAdmin' => $request->user()?->hasAnyRoles(['admin']),
                 ] : null,

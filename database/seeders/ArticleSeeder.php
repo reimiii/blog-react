@@ -15,7 +15,7 @@ class ArticleSeeder extends Seeder
      */
     public function run()
     {
-        \App\Models\User::factory(5)->hasArticles(15)->create();
+        \App\Models\User::factory(2)->hasArticles(5)->create();
         \App\Models\Article::get()->each(function ($article) {
             $article->tags()->attach(
                 \App\Models\Tag::get()->random(rand(1,3))->pluck('id')

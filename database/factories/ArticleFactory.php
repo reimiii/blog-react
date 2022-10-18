@@ -24,6 +24,7 @@ class ArticleFactory extends Factory
             'slug' => str($title)->slug(),
             'teaser' => $this->faker->sentence(),
             'body' => $this->faker->sentence(),
+            'status' => 2,
         ];
     }
 }

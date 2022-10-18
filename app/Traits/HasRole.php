@@ -24,7 +24,6 @@ trait HasRole
                 return true;
             }
         }
-
         return false;
     }
 

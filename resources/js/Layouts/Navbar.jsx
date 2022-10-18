@@ -49,16 +49,18 @@ export default function Navbar() {
                                             <DropdownMenu.Link href={`/u/${auth.user.username}`}>
                                                 My profile
                                             </DropdownMenu.Link>
-                                            <DropdownMenu.Link href={'#'}>
-                                                Settings
-                                            </DropdownMenu.Link>
+                                            {/*<DropdownMenu.Link href={'#'}>*/}
+                                            {/*    Settings*/}
+                                            {/*</DropdownMenu.Link>*/}
                                             {auth.user.hasRole ?
                                                 <>
 
                                                     <DropdownMenu.Divider/>
+
                                                     <DropdownMenu.Link href={route('articles.create')}>
                                                         New article
                                                     </DropdownMenu.Link>
+
                                                     <DropdownMenu.Link href={route('articles.table')}>
                                                         My articles
                                                     </DropdownMenu.Link>
