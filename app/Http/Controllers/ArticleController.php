@@ -61,10 +61,6 @@ class ArticleController extends Controller
     {
         $articles = Article::query()
             ->select('title', 'picture', 'slug', 'user_id', 'teaser', 'created_at', 'id')
-            ->with([
-                'tags' => fn($tag) => $tag->select('name', 'slug'),
-                'author'
-            ])
             ->published()
             ->latest()
             ->fastPaginate(9);

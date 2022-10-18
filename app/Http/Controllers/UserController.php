@@ -11,7 +11,11 @@ class UserController extends Controller
     public function show(User $user)
     {
         $articles = Article::query()
+            ->when($user->isNot(auth()->user()), function ($query, $user) {
+                $query->published();
+            })
             ->whereBelongsTo($user, 'author')
+            ->latest()
             ->fastPaginate(9);
         return inertia('Users/Show', [
             'user' => [

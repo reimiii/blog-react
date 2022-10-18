@@ -19,6 +19,9 @@ class Tag extends Model
     {
         return $this->belongsToMany(Article::class)
             ->select('title', 'picture', 'slug', 'user_id', 'teaser', 'created_at', 'id')
-            ->with(['tags' => fn($tag) => $tag->select('name', 'slug') ]);
+            ->when(!auth()->check(), function ($query) {
+                $query->published();
+            });
+//            ->with(['tags' => fn($tag) => $tag->select('name', 'slug') ]);
     }
 }
