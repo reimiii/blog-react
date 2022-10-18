@@ -11,6 +11,9 @@ module.exports = {
 
     theme: {
         extend: {
+            fontSize: {
+                tiny: '0.95rem',
+            },
             fontFamily: {
                 // sans: ['Work Sans', ...defaultTheme.fontFamily.sans],
                 sans: ['Open Sans', ...defaultTheme.fontFamily.sans],

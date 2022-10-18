@@ -10,6 +10,7 @@ use App\Http\Resources\ArticleTableResource;
 use App\Models\Article;
 use App\Models\Category;
 use App\Models\Tag;
+use Illuminate\Auth\Access\AuthorizationException;
 use Illuminate\Http\Request;
 use Illuminate\Http\Response;
 use Illuminate\Support\Facades\Storage;
@@ -41,7 +42,7 @@ class ArticleController extends Controller
                 'tags' => fn($query) => $query->select('id', 'name', 'slug'),
                 'category' => fn($query) => $query->select('id', 'name', 'slug'),
             ])
-            ->whereBelongsTo($request->user(), 'author')
+            ->when(!$request->user()->hasAnyRoles(['admin']), fn($query) => $query->whereBelongsTo($request->user(), 'author'))
             ->latest()
             ->fastPaginate(10);
 //        return ArticleTableResource::collection($articles);
@@ -60,7 +61,11 @@ class ArticleController extends Controller
     {
         $articles = Article::query()
             ->select('title', 'picture', 'slug', 'user_id', 'teaser', 'created_at', 'id')
-            ->with(['tags' => fn($tag) => $tag->select('name', 'slug')])
+            ->with([
+                'tags' => fn($tag) => $tag->select('name', 'slug'),
+                'author'
+            ])
+            ->published()
             ->latest()
             ->fastPaginate(9);
 
@@ -115,9 +120,12 @@ class ArticleController extends Controller
      *
      * @param Article $article
      * @return \Inertia\Response|ResponseFactory
+     * @throws AuthorizationException
      */
     public function show(Article $article)
     {
+        $this->authorize('view', $article);
+
         $articles = Article::query()
             ->select('id', 'title', 'slug')
             ->whereNot('id', $article->id)

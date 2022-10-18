@@ -19,7 +19,12 @@ export default function Show(props) {
                         Fill in :{' '}
                         <Link className='text-white underline' href={route('categories.show', article.category.slug)}>
                             {article.category.name}
-                        </Link>
+                        </Link> by <Link
+                        className="text-white underline"
+                        href={`/u/${article.author.username}`}
+                    >
+                        {article.author.name}
+                    </Link>
                     </div>
                     {article.tags.length ?
                         <div className="flex items-center gap-x-2">

@@ -29,7 +29,7 @@ export default function ArticleTable(props) {
                             <tr key={article.id}>
                                 <Table.Td>{meta.from + i}</Table.Td>
                                 <Table.Td>
-                                    <Link href={article.url}>
+                                    <Link href={article.slug}>
                                         {article.title}
                                     </Link>
                                 </Table.Td>
@@ -47,6 +47,18 @@ export default function ArticleTable(props) {
                                                 {tag.name}
                                             </Link>
                                         ))}
+                                    </div>
+                                </Table.Td>
+                                <Table.Td>
+                                    <div className="flex gap-x-1">
+                                        <span className={clsx(
+                                            article.status == 'Published' && 'bg-green-100 text-green-800',
+                                            article.status == 'Unpublished' && 'bg-orange-100 text-orange-800',
+                                            article.status == 'Preview' && 'bg-sky-100 text-sky-800',
+                                            'px-2 py-1 rounded text-xs font-semibold'
+                                        )}>
+                                        {article.status}
+                                    </span>
                                     </div>
                                 </Table.Td>
                                 <td>

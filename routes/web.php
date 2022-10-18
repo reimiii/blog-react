@@ -5,6 +5,7 @@ use App\Http\Controllers\CategoryController;
 use App\Http\Controllers\DashboardController;
 use App\Http\Controllers\HomeController;
 use App\Http\Controllers\TagController;
+use App\Http\Controllers\UserController;
 use Illuminate\Support\Facades\Route;
 
 //auth()->loginUsingId(2);
@@ -26,5 +27,7 @@ Route::get('categories/{category:slug}', [CategoryController::class, 'show'])
 Route::get('dashboard', DashboardController::class)
     ->middleware(['auth'])
     ->name('dashboard');
+
+Route::get('/u/{user:username}', [UserController::class, 'show'])->name('users.show');
 
 require __DIR__ . '/auth.php';

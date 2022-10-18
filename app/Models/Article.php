@@ -14,6 +14,8 @@ class Article extends Model
 
     protected $guarded = [];
 
+    protected $with = ['author', 'tags'];
+
     protected $casts = [
       'status' => ArticleStatus::class,
     ];
@@ -25,7 +27,7 @@ class Article extends Model
 
     public function tags(): BelongsToMany
     {
-        return $this->belongsToMany(Tag::class);
+        return $this->belongsToMany(Tag::class)->select('id', 'name', 'slug');
     }
 
     public function category(): BelongsTo
@@ -35,6 +37,11 @@ class Article extends Model
 
     public function author(): BelongsTo
     {
-        return $this->belongsTo(User::class, 'user_id')->select('id', 'name');
+        return $this->belongsTo(User::class, 'user_id')->select('id', 'name', 'username');
+    }
+
+    public function scopePublished($query)
+    {
+        return $query->where('status', ArticleStatus::PUBLISHED);
     }
 }

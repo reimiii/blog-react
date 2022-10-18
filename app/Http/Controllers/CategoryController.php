@@ -13,8 +13,8 @@ class CategoryController extends Controller
     {
         $articles = Article::query()
             ->whereBelongsTo($category)
-            ->select('title', 'picture', 'slug', 'user_id', 'teaser', 'created_at', 'id')
-            ->with(['tags' => fn($tag) => $tag->select('name', 'slug')])
+            ->select('title', 'picture', 'slug', 'user_id', 'created_at', 'id')
+            ->published()
             ->latest()
             ->fastPaginate();
 
