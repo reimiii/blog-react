@@ -10,10 +10,10 @@ class TagController extends Controller
 {
     public function __construct()
     {
-//        $this->middleware('auth')->only('index');
+        $this->middleware('auth')->except(['index', 'show']);
     }
 
-    public function index()
+    public function index(Request $request)
     {
         return inertia('Tags/Index', [
             'tags' => Tag::query()
