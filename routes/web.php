@@ -24,8 +24,8 @@ Route::resource('articles', ArticleController::class);
 //Route::get('tags/{tag:slug}', [TagController::class, 'show'])
 //    ->name('tags.show');
 
-Route::resource('tags', TagController::class);
-//    ->except('index');
+Route::resource('tags', TagController::class)
+    ->only('index', 'show', 'store', 'update', 'destroy');
 
 Route::get('categories/{category:slug}', [CategoryController::class, 'show'])
     ->name('categories.show');

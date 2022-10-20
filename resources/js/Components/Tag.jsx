@@ -2,16 +2,19 @@ import React, {useState} from 'react';
 import Dropdown from '@/Components/Dropdown';
 import InputError from '@/Components/InputError';
 import PrimaryButton from '@/Components/PrimaryButton';
-import {usePage, useForm} from "@inertiajs/inertia-react";
+import {usePage, useForm, Link} from "@inertiajs/inertia-react";
+import useSwal from "@/Hooks/useSwal";
 
 export default function Tag({tag}) {
     const {auth} = usePage().props;
 
     const [editing, setEditing] = useState(false);
 
-    const {data, setData, patch, clearErrors, reset, errors, processing} = useForm({
+    const {data, setData, patch, clearErrors, reset, errors} = useForm({
         name: tag.name,
     });
+
+    const {ask} = useSwal();
 
     const submit = (e) => {
         e.preventDefault();
@@ -51,6 +54,20 @@ export default function Tag({tag}) {
                                     onClick={() => setEditing(true)}>
                                     Edit
                                 </button>
+                                <Link
+                                    onClick={() => {
+                                        ask({
+                                            url: route('tags.destroy', tag.slug),
+                                            method: 'delete',
+                                            message: 'Are you sure you want to delete this tag? This action cannot be undone. All posts with this tag will be untagged.',
+                                        })
+
+                                    }}
+                                >
+                                    <button className={`block w-full px-4 py-2 text-left text-sm leading-5 text-red-700 hover:bg-red-100 focus:bg-red-100 transition duration-150 ease-in-out`}>
+                                        Delete
+                                    </button>
+                                </Link>
                             </Dropdown.Content>
                         </Dropdown>
                     }

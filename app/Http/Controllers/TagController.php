@@ -22,7 +22,6 @@ class TagController extends Controller
         ]);
     }
 
-
     public function store(Request $request, Tag $tag)
     {
         $request->validate([
@@ -59,6 +58,13 @@ class TagController extends Controller
             'tag' => $tag,
             'articles' => ArticleItemResource::collection($articles)
         ]);
+    }
+
+    public function destroy(Tag $tag)
+    {
+        $tag->delete();
+
+        return back();
     }
 
 }
