@@ -21,8 +21,11 @@ Route::get('articles/a/table', [ArticleController::class, 'currentTable'])
 
 Route::resource('articles', ArticleController::class);
 
-Route::get('tags/{tag:slug}', [TagController::class, 'show'])
-    ->name('tags.show');
+//Route::get('tags/{tag:slug}', [TagController::class, 'show'])
+//    ->name('tags.show');
+
+Route::resource('tags', TagController::class);
+//    ->except('index');
 
 Route::get('categories/{category:slug}', [CategoryController::class, 'show'])
     ->name('categories.show');

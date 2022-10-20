@@ -8,6 +8,47 @@ use Illuminate\Http\Request;
 
 class TagController extends Controller
 {
+    public function __construct()
+    {
+//        $this->middleware('auth')->only('index');
+    }
+
+    public function index()
+    {
+        return inertia('Tags/Index', [
+            'tags' => Tag::latest()->get(),
+        ]);
+    }
+
+
+    public function store(Request $request, Tag $tag)
+    {
+        $request->validate([
+            'name' => ['required', 'string', 'max:255'],
+        ]);
+
+        $tag->create([
+            'name' => $request->name,
+            'slug' => str($request->name)->slug(),
+        ]);
+
+        return back();
+    }
+
+    public function update(Request $request, Tag $tag)
+    {
+        $request->validate([
+            'name' => ['required', 'string', 'max:255'],
+        ]);
+
+        $tag->update([
+            'name' => $request->name,
+            'slug' => str($request->name)->slug(),
+        ]);
+
+        return back();
+    }
+
     public function show(Tag $tag)
     {
         $articles = $tag->articles()->latest()->fastPaginate();
@@ -17,4 +58,5 @@ class TagController extends Controller
             'articles' => ArticleItemResource::collection($articles)
         ]);
     }
+
 }
