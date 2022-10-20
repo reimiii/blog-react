@@ -16,7 +16,7 @@ class CategoryController extends Controller
 
     public function index()
     {
-        return inertia('Categories/Index', [
+        return inertia('Category/Index', [
             'categories' => Category::query()
                 ->latest('updated_at')
                 ->get(),
