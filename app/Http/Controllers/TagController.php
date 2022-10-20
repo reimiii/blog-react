@@ -13,7 +13,7 @@ class TagController extends Controller
         $this->middleware('auth')->except(['index', 'show']);
     }
 
-    public function index(Request $request)
+    public function index()
     {
         return inertia('Tags/Index', [
             'tags' => Tag::query()

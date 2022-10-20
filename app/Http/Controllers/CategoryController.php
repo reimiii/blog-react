@@ -9,6 +9,20 @@ use Illuminate\Http\Request;
 
 class CategoryController extends Controller
 {
+    public function __construct()
+    {
+        $this->middleware('auth')->except(['index', 'show']);
+    }
+
+    public function index()
+    {
+        return inertia('Categories/Index', [
+            'categories' => Category::query()
+                ->latest('updated_at')
+                ->get(),
+        ]);
+    }
+
     public function show(Category $category)
     {
         $articles = Article::query()

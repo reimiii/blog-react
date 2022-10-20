@@ -25,10 +25,13 @@ Route::resource('articles', ArticleController::class);
 //    ->name('tags.show');
 
 Route::resource('tags', TagController::class)
-    ->only('index', 'show', 'store', 'update', 'destroy');
+    ->except('edit', 'create');
 
-Route::get('categories/{category:slug}', [CategoryController::class, 'show'])
-    ->name('categories.show');
+Route::resource('categories', CategoryController::class)
+    ->except('edit', 'create');
+
+//Route::get('categories/{category:slug}', [CategoryController::class, 'show'])
+//    ->name('categories.show');
 
 Route::get('dashboard', DashboardController::class)
     ->middleware(['auth'])
