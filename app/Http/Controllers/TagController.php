@@ -16,7 +16,9 @@ class TagController extends Controller
     public function index()
     {
         return inertia('Tags/Index', [
-            'tags' => Tag::latest()->get(),
+            'tags' => Tag::query()
+                ->latest('updated_at')
+                ->get(),
         ]);
     }
 

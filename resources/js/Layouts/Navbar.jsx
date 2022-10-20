@@ -73,12 +73,21 @@ export default function Navbar() {
                                                     </DropdownMenu.Link>
 
                                                     {auth.user.isAdmin ? (
-                                                        <DropdownMenu.Link
-                                                            href={route('articles.table.current')}
-                                                            isActive={route().current('articles.table.current')}
-                                                        >
-                                                            Current articles
-                                                        </DropdownMenu.Link>
+                                                        <>
+                                                            <DropdownMenu.Link
+                                                                href={route('tags.index')}
+                                                                isActive={route().current('tags.index')}
+                                                            >
+                                                                Manage tags
+                                                            </DropdownMenu.Link>
+
+                                                            <DropdownMenu.Link
+                                                                href={route('articles.table.current')}
+                                                                isActive={route().current('articles.table.current')}
+                                                            >
+                                                                Current articles
+                                                            </DropdownMenu.Link>
+                                                        </>
                                                     ) : null}
 
                                                     <DropdownMenu.Divider/>
