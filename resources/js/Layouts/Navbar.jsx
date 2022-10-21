@@ -55,8 +55,24 @@ export default function Navbar() {
                                             </DropdownMenu.Link>
                                             {auth.user.hasRole ?
                                                 <>
+                                                    {auth.user.isAdmin ? (
+                                                        <>
+                                                            <DropdownMenu.Divider/>
+                                                            <DropdownMenu.Link
+                                                                href={route('categories.index')}
+                                                                isActive={route().current('categories.index')}
+                                                            >
+                                                                Manage Categories
+                                                            </DropdownMenu.Link>
+                                                            <DropdownMenu.Link
+                                                                href={route('tags.index')}
+                                                                isActive={route().current('tags.index')}
+                                                            >
+                                                                Manage tags
+                                                            </DropdownMenu.Link>
+                                                        </>
+                                                    ) : null}
                                                     <DropdownMenu.Divider/>
-
 
                                                     <DropdownMenu.Link
                                                         href={route('articles.create')}
@@ -64,32 +80,20 @@ export default function Navbar() {
                                                     >
                                                         New article
                                                     </DropdownMenu.Link>
-
+                                                    {auth.user.isAdmin ? (
+                                                        <DropdownMenu.Link
+                                                            href={route('articles.table.current')}
+                                                            isActive={route().current('articles.table.current')}
+                                                        >
+                                                            My articles
+                                                        </DropdownMenu.Link>
+                                                    ) : null}
                                                     <DropdownMenu.Link
                                                         href={route('articles.table')}
                                                         isActive={route().current('articles.table')}
                                                     >
                                                         {auth.user.isAdmin ? 'Manage articles' : 'My articles'}
                                                     </DropdownMenu.Link>
-
-                                                    {auth.user.isAdmin ? (
-                                                        <>
-                                                            <DropdownMenu.Link
-                                                                href={route('tags.index')}
-                                                                isActive={route().current('tags.index')}
-                                                            >
-                                                                Manage tags
-                                                            </DropdownMenu.Link>
-
-                                                            <DropdownMenu.Link
-                                                                href={route('articles.table.current')}
-                                                                isActive={route().current('articles.table.current')}
-                                                            >
-                                                                Current articles
-                                                            </DropdownMenu.Link>
-                                                        </>
-                                                    ) : null}
-
                                                     <DropdownMenu.Divider/>
                                                 </>
                                                 : null}
