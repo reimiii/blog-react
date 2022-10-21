@@ -2,7 +2,7 @@ import React from 'react';
 import Container from '@/Components/Container';
 import Pagination from '@/Components/Pagination';
 import App from '@/Layouts/App';
-import {Link} from '@inertiajs/inertia-react';
+import {Head, Link} from '@inertiajs/inertia-react';
 import Table from '@/Components/Table';
 import useSwal from '@/Hooks/useSwal';
 import clsx from 'clsx'
@@ -12,6 +12,7 @@ export default function ArticleTable(props) {
     const {ask} = useSwal();
     return (
         <Container>
+            <Head title={'Article table'}/>
             <Table>
                 <Table.Thead>
                     <tr>
@@ -34,8 +35,8 @@ export default function ArticleTable(props) {
                                     </Link>
                                 </Table.Td>
                                 <Table.Td>
-                                    <Link href={article.category.url}>
-                                        {article.category.name}
+                                    <Link href={article.category.url || '#'}>
+                                        {article.category.name || 'Uncategorized'}
                                     </Link>
                                 </Table.Td>
                                 <Table.Td>

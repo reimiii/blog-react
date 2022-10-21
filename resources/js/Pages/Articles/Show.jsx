@@ -17,8 +17,8 @@ export default function Show(props) {
                 <div className='mb-4'>
                     <div className='text-gray-400 text-sm mb-4'>
                         Fill in :{' '}
-                        <Link className='text-white underline' href={route('categories.show', article.category.slug)}>
-                            {article.category.name}
+                        <Link className='text-white underline' href={article.category.slug}>
+                            {article.category.name ?? 'Uncategorized'}
                         </Link> by <Link
                         className="text-white underline"
                         href={`/u/${article.author.username}`}

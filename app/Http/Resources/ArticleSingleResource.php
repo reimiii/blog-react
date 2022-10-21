@@ -23,8 +23,8 @@ class ArticleSingleResource extends JsonResource
             'picture' => $this->picture ? Storage::url($this->picture) : null,
             'author' => $this->author,
             'category' => [
-                'name' => $this->category->name,
-                'slug' => $this->category->slug
+                'name' => $this->category?->name,
+                'slug' => $this->category?->slug ? route('categories.show', $this->category->slug) : '#',
             ],
             'tags' => $this->tags->map(fn($tag) => [
                 'name' => $tag->name,

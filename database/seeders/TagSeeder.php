@@ -16,16 +16,15 @@ class TagSeeder extends Seeder
     public function run()
     {
         collect([
-            ['name' => $name = 'Laravel', 'slug' => str($name)->slug()],
-            ['name' => $name = 'PHP', 'slug' => str($name)->slug()],
-            ['name' => $name = 'Rust', 'slug' => str($name)->slug()],
-            ['name' => $name = 'R lang', 'slug' => str($name)->slug()],
+            ['name' => $name = 'Fun', 'slug' => str($name)->slug()],
+            ['name' => $name = 'Windows', 'slug' => str($name)->slug()],
             ['name' => $name = 'Linux', 'slug' => str($name)->slug()],
-            ['name' => $name = 'Go', 'slug' => str($name)->slug()],
-            ['name' => $name = 'Javascript', 'slug' => str($name)->slug()],
-            ['name' => $name = 'Java', 'slug' => str($name)->slug()],
-            ['name' => $name = 'Pascal', 'slug' => str($name)->slug()],
-            ['name' => $name = 'SQL', 'slug' => str($name)->slug()],
-        ])->each(fn ($category) => \App\Models\Tag::create($category));
+            ['name' => $name = 'Anime', 'slug' => str($name)->slug()],
+            ['name' => $name = 'Docker', 'slug' => str($name)->slug()],
+            ['name' => $name = 'Git', 'slug' => str($name)->slug()],
+            ['name' => $name = 'GitHub', 'slug' => str($name)->slug()],
+            ['name' => $name = 'GitLab', 'slug' => str($name)->slug()],
+
+        ])->each(fn($category) => \App\Models\Tag::create($category));
     }
 }

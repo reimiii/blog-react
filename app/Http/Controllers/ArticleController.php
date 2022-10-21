@@ -131,7 +131,7 @@ class ArticleController extends Controller
             ->select('id', 'title', 'slug')
             ->published()
             ->whereNot('id', $article->id)
-            ->whereBelongsTo($article->category)
+            ->when($article->category, fn($query) => $query->whereBelongsTo($article->category))
             ->limit(10)
             ->get();
 

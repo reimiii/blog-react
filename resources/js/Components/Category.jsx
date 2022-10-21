@@ -34,7 +34,7 @@ export default function Category({category}) {
                     <div>
                         {/*<span className="text-gray-800">{chirp.user.name}</span>*/}
                         <small
-                            className="ml-2 text-sm text-gray-600">{new Date(tag.created_at).toLocaleString()}</small>
+                            className="ml-2 text-sm text-gray-600">{new Date(category.created_at).toLocaleString()}</small>
                         {category.created_at !== category.updated_at &&
                             <small className="text-sm text-gray-600"> &middot; edited</small>}
                     </div>
@@ -60,7 +60,7 @@ export default function Category({category}) {
                                         ask({
                                             url: route('categories.destroy', category.slug),
                                             method: 'delete',
-                                            message: 'Are you sure you want to delete this tag? This action cannot be undone. All posts with this tag will be untagged.',
+                                            message: 'Danger! Are you sure you want to delete this category? This action cannot be undone. please be sure you want to delete this category.',
                                         })
 
                                     }}

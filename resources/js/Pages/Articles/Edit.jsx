@@ -11,7 +11,7 @@ export default function Edit({article, statuses}) {
     const {data, setData} = useForm({
         title: article.title,
         teaser: article.teaser,
-        category_id: article.category,
+        category_id: article.category ?? '',
         body: article.body,
         picture: '',
         tags: article.tags,
