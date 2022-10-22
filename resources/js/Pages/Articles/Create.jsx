@@ -1,14 +1,14 @@
 import React from 'react';
 import App from '@/Layouts/App';
-import {Head, useForm} from '@inertiajs/inertia-react';
+import { Head, useForm } from '@inertiajs/inertia-react';
 import Header from '@/Components/Header';
 import Container from '@/Components/Container';
-import PrimaryButton from "@/Components/PrimaryButton";
-import {Inertia} from "@inertiajs/inertia";
-import ArticleForm from "@/Components/ArticleForm";
+import PrimaryButton from '@/Components/PrimaryButton';
+import { Inertia } from '@inertiajs/inertia';
+import ArticleForm from '@/Components/ArticleForm';
 
-export default function Create({tags, statuses}) {
-    const {data, setData} = useForm({
+export default function Create({ tags, statuses }) {
+    const { data, setData } = useForm({
         title: '',
         teaser: '',
         category_id: '',
@@ -24,12 +24,12 @@ export default function Create({tags, statuses}) {
             ...data,
             category_id: data.category_id.id,
             status: data.status.id,
-            tags: data.tags.map(tag => tag.id),
+            tags: data.tags.map((tag) => tag.id),
         });
-    }
+    };
     return (
         <div>
-            <Head title={'Create New One'}/>
+            <Head title={'Create New One'} />
             <Header>
                 <Header.Title>{data.title || 'The Title'}</Header.Title>
                 <Header.Subtitle>{data.teaser || 'The Teaser'}</Header.Subtitle>
@@ -37,16 +37,13 @@ export default function Create({tags, statuses}) {
 
             <Container>
                 <form onSubmit={onSubmit}>
-                    <ArticleForm
-                        {...{data, setData}}
-                    />
+                    <ArticleForm {...{ data, setData }} />
 
                     <PrimaryButton>Submit</PrimaryButton>
                 </form>
             </Container>
-
         </div>
     );
 }
 
-Create.layout = (page) => <App children={page}/>;
+Create.layout = (page) => <App children={page} />;

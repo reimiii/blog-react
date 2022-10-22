@@ -5,9 +5,9 @@ import clsx from 'clsx';
 const Table = ({ children, className = '' }) => {
     return (
         <div className={clsx(className, 'flex flex-col')}>
-            <div className="overflow-x-auto">
-                <div className="inline-block min-w-full align-middle">
-                    <table className="min-w-full divide-y divide-gray-200">
+            <div className='overflow-x-auto'>
+                <div className='inline-block min-w-full align-middle'>
+                    <table className='min-w-full divide-y divide-gray-200'>
                         {children}
                     </table>
                 </div>
@@ -22,7 +22,7 @@ const Thead = ({ className, children }) => {
 
 const Tbody = ({ children }) => {
     return (
-        <tbody className="divide-y divide-gray-200 bg-white">{children}</tbody>
+        <tbody className='divide-y divide-gray-200 bg-white'>{children}</tbody>
     );
 };
 
@@ -40,7 +40,7 @@ const Td = ({ className = '', children, ...props }) => {
 const Th = ({ className, children }) => {
     return (
         <th
-            scope="col"
+            scope='col'
             className={clsx(
                 className,
                 'whitespace-nowrap px-6 py-3 text-left text-sm font-semibold text-black'
@@ -88,25 +88,25 @@ const DropdownButton = ({ className, ...props }) => {
 
 const Dropdown = ({ className, children }) => {
     return (
-        <div className="relative">
+        <div className='relative'>
             <Menu>
                 <Menu.Button>
                     <svg
-                        xmlns="http://www.w3.org/2000/svg"
-                        className="inline h-5 w-5"
-                        fill="none"
-                        viewBox="0 0 24 24"
-                        stroke="currentColor"
+                        xmlns='http://www.w3.org/2000/svg'
+                        className='inline h-5 w-5'
+                        fill='none'
+                        viewBox='0 0 24 24'
+                        stroke='currentColor'
                     >
                         <path
-                            strokeLinecap="round"
-                            strokeLinejoin="round"
+                            strokeLinecap='round'
+                            strokeLinejoin='round'
                             strokeWidth={2}
-                            d="M12 5v.01M12 12v.01M12 19v.01M12 6a1 1 0 110-2 1 1 0 010 2zm0 7a1 1 0 110-2 1 1 0 010 2zm0 7a1 1 0 110-2 1 1 0 010 2z"
+                            d='M12 5v.01M12 12v.01M12 19v.01M12 6a1 1 0 110-2 1 1 0 010 2zm0 7a1 1 0 110-2 1 1 0 010 2zm0 7a1 1 0 110-2 1 1 0 010 2z'
                         />
                     </svg>
                 </Menu.Button>
-                <Menu.Items className="absolute top-0 right-7 z-10 w-56 divide-y overflow-hidden rounded-md border bg-white py-0.5 text-left shadow-sm">
+                <Menu.Items className='absolute top-0 right-7 z-10 w-56 divide-y overflow-hidden rounded-md border bg-white py-0.5 text-left shadow-sm'>
                     {children}
                 </Menu.Items>
             </Menu>

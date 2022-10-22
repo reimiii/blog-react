@@ -8,7 +8,7 @@ export default function Markdown({ children }) {
     }, []);
     return (
         <div
-            className="prose max-w-none prose-blue prose-img:rounded-lg"
+            className='prose max-w-none prose-blue prose-img:rounded-lg'
             dangerouslySetInnerHTML={{ __html: DOMPurify.sanitize(children) }}
         />
     );

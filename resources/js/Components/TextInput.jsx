@@ -2,10 +2,10 @@ import React, { useEffect, useRef } from 'react';
 import clsx from 'clsx';
 
 export default function Input({
-  type = 'text',
-  className,
-  isFocused,
-  ...props
+    type = 'text',
+    className,
+    isFocused,
+    ...props
 }) {
     const input = useRef();
 

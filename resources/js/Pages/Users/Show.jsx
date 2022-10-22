@@ -1,22 +1,20 @@
 import React from 'react';
 import App from '@/Layouts/App';
-import {Head} from '@inertiajs/inertia-react';
+import { Head } from '@inertiajs/inertia-react';
 import Header from '@/Components/Header';
 import Container from '@/Components/Container';
 import ArticleBlock from '@/Components/ArticleBlock';
 import Grid from '@/Components/Grid';
 import Pagination from '@/Components/Pagination';
 
-export default function Show({user, ...props}) {
-    const {data: articles, meta, links} = props.articles;
+export default function Show({ user, ...props }) {
+    const { data: articles, meta, links } = props.articles;
     return (
         <div>
-            <Head title={user.name}/>
+            <Head title={user.name} />
             <Header>
                 <Header.Title>{user.name}</Header.Title>
-                <Header.Subtitle>
-                    Joined {user.joined}.
-                </Header.Subtitle>
+                <Header.Subtitle>Joined {user.joined}.</Header.Subtitle>
             </Header>
 
             <Container>
@@ -30,7 +28,7 @@ export default function Show({user, ...props}) {
                                 />
                             ))}
                         </Grid>
-                        <Pagination {...{meta, links}} />
+                        <Pagination {...{ meta, links }} />
                     </>
                 ) : (
                     <p>No articles yet.</p>
@@ -40,4 +38,4 @@ export default function Show({user, ...props}) {
     );
 }
 
-Show.layout = (page) => <App children={page}/>;
+Show.layout = (page) => <App children={page} />;

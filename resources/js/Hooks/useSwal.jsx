@@ -4,11 +4,11 @@ import swal from 'sweetalert';
 
 export default function useSwal() {
     const ask = ({
-                     url,
-                     message = 'Make sure you make good decisions!',
-                     method = 'post',
-                     data = []
-                 }) => {
+        url,
+        message = 'Make sure you make good decisions!',
+        method = 'post',
+        data = [],
+    }) => {
         swal({
             // icon: 'warning',
             text: message,

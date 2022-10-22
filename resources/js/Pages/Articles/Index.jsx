@@ -3,15 +3,15 @@ import App from '@/Layouts/App';
 import { Head } from '@inertiajs/inertia-react';
 import Header from '@/Components/Header';
 import Container from '@/Components/Container';
-import Grid from "@/Components/Grid";
-import ArticleBlock from "@/Components/ArticleBlock";
-import Pagination from "@/Components/Pagination";
+import Grid from '@/Components/Grid';
+import ArticleBlock from '@/Components/ArticleBlock';
+import Pagination from '@/Components/Pagination';
 
 export default function Index({ category, ...props }) {
     const { data: articles, meta, links } = props.articles;
     return (
         <div>
-            <Head title="The articles" />
+            <Head title='The articles' />
             <Header>
                 <Header.Title>The articles</Header.Title>
                 <Header.Subtitle>
@@ -24,16 +24,20 @@ export default function Index({ category, ...props }) {
                     <>
                         <Grid className='items-start'>
                             {articles.map((article) => (
-                                <ArticleBlock article={article} key={article.slug}/>
+                                <ArticleBlock
+                                    article={article}
+                                    key={article.slug}
+                                />
                             ))}
                         </Grid>
-                        <Pagination {...{meta, links}} />
+                        <Pagination {...{ meta, links }} />
                     </>
                 ) : (
-                    <p className="text-center text-gray-500">No articles found.</p>
+                    <p className='text-center text-gray-500'>
+                        No articles found.
+                    </p>
                 )}
             </Container>
-
         </div>
     );
 }

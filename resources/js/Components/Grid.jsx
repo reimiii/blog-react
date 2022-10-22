@@ -1,7 +1,7 @@
 import clsx from 'clsx';
 import React from 'react';
 
-export default function Grid({className = '', cols = 3, children}) {
+export default function Grid({ className = '', cols = 3, children }) {
     return (
         <div
             className={clsx(
