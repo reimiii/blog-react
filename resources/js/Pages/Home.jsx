@@ -11,9 +11,14 @@ export default function Home({articles}) {
         <div>
             <Head title="What's happening?"/>
             <Header>
-                <Header.Title>What's happening?</Header.Title>
-                <Header.Subtitle>Find out what's trending in the world right now.</Header.Subtitle>
-                <Header.Content>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Sed euismod, nuncmattis ultricies ultricies, lacus lacus blandit massa, eget lacinia odio sem nec elit. Null
+                <Header.Title>
+                    Selamat datang di <span className="font-bold text-blue-500">Blog</span> <span className="font-bold">kami</span>
+                </Header.Title>
+                <Header.Subtitle>
+                    Blog dimana anda bisa melihat tips & trik seputar dunia pemrograman & teknologi
+                </Header.Subtitle>
+                <Header.Content>
+                    Apa lagi yang anda tunggu? Yuk mulai membaca artikel kami sekarang juga!
                 </Header.Content>
             </Header>
             <Container>

@@ -15,7 +15,7 @@ export default function Show({ category, ...props }) {
             <Header>
                 <Header.Title>{category.name}</Header.Title>
                 <Header.Subtitle>
-                    This page will show you the articles about {category.name}
+                    Halaman ini akan menampilkan tentang {category.name}
                 </Header.Subtitle>
             </Header>
 

@@ -7,7 +7,7 @@ export default function Footer() {
         <div className="border-t border-gray-800 bg-gray-900 py-10 mt-8 md:mt-16">
             <Container>
                 <div className="max-w-2xl mx-auto text-center">
-                    <ApplicationLogo className="fill-white w-16 h-16 mx-auto" />
+                    {/*<ApplicationLogo className="fill-white w-16 h-16 mx-auto" />*/}
                     <p className="mt-5 text-gray-300">
                         Computer Sience student & Full-Stack developer.
                         Mainly web-developer whos enjoy improving his skills in other languages as well.
