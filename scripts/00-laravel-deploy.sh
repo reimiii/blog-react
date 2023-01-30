@@ -20,22 +20,22 @@ php artisan view:cache
 echo "===================================="
 echo "Running migrations..."
 echo "===================================="
-php artisan migrate:fresh --seed --force
+# php artisan migrate:fresh --seed --force
 
-echo "===================================="
-echo "Running Storage Link..."
-echo "===================================="
-php artisan storage:link --force
+#echo "===================================="
+#echo "Running Storage Link..."
+#echo "===================================="
+#php artisan storage:link --force
 
 echo "===================================="
 echo "Running composer autoloader optimize"
 echo "===================================="
 composer install --optimize-autoloader --no-dev --working-dir=/var/www/html
 
-echo "===================================="
-echo "OS info"
-echo "===================================="
-cat /etc/os-release
+#echo "===================================="
+#echo "OS info"
+#echo "===================================="
+#cat /etc/os-release
 
 #echo "===================================="
 #echo "Running npm install"
