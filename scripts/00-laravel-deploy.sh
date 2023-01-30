@@ -13,7 +13,7 @@ echo "Caching routes..."
 php artisan view:cache
 
 echo "Running migrations..."
-php artisan migrate:fresh --seed
+php artisan migrate:fresh --seed --force
 
 echo "Running composer autoloader optimize"
 composer install --optimize-autoloader --no-dev --working-dir=/var/www/html
