@@ -3,6 +3,7 @@
     <head>
         <meta charset="utf-8">
         <meta name="viewport" content="width=device-width, initial-scale=1">
+        <meta http-equiv="Content-Security-Policy" content="upgrade-insecure-requests">
 
         <title inertia>{{ config('app.name', 'Laravel') }}</title>
         <link rel="icon" type="image/png" href="https://cdn.discordapp.com/icons/811763237623431199/d5cfbd2b456b1c62ef342f26a45c07ca.webp">
