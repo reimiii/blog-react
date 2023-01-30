@@ -9,10 +9,7 @@ export default function Footer() {
                 <div className='max-w-2xl mx-auto text-center'>
                     {/*<ApplicationLogo className="fill-white w-16 h-16 mx-auto" />*/}
                     <p className='mt-5 text-gray-300'>
-                        Computer Sience student & Full-Stack developer. Mainly
-                        web-developer whos enjoy improving his skills in other
-                        languages as well. We are a group of people who love
-                        anime and anime-related topics.
+                        Hi! We are a group of computer science students and full-stack developers. Our main focus is on web development, but we also enjoy improving our skills in other programming languages. We have a shared passion for anime and all things related to it.
                     </p>
                     <p className='font-mono text-sm text-gray-400 mt-10 max-w-lg mx-auto'>
                         Built with all the love in the world by the{' '}

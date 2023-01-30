@@ -12,17 +12,14 @@ export default function Home({ articles }) {
             <Head title="What's happening?" />
             <Header>
                 <Header.Title>
-                    Selamat datang di{' '}
-                    <span className='font-bold text-blue-500'>Blog</span>{' '}
-                    <span className='font-bold'>kami</span>
+                    Welcome to our{' '}
+                    <span className='font-bold text-blue-500'>Blog</span>
                 </Header.Title>
                 <Header.Subtitle>
-                    Blog dimana anda bisa melihat tips & trik seputar dunia
-                    pemrograman & teknologi
+                    Here, you'll discover useful tips and tricks about programming and technology.
                 </Header.Subtitle>
                 <Header.Content>
-                    Apa lagi yang anda tunggu? Yuk mulai membaca artikel kami
-                    sekarang juga!
+                    So what are you waiting for? Start exploring our articles now!"
                 </Header.Content>
             </Header>
             <Container>

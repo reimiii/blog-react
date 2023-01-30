@@ -33,6 +33,16 @@ echo "===================================="
 composer install --optimize-autoloader --no-dev --working-dir=/var/www/html
 
 echo "===================================="
+echo "Running npm install"
+echo "===================================="
+npm install --working-dir=/var/www/html
+
+echo "===================================="
+echo "Running Build"
+echo "===================================="
+npm run build
+
+echo "===================================="
 echo "Running Inertia SSR"
 echo "===================================="
 php artisan inertia:start-ssr
