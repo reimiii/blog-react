@@ -19,7 +19,7 @@ export default function Home({ articles }) {
                     Here, you'll discover useful tips and tricks about programming and technology.
                 </Header.Subtitle>
                 <Header.Content>
-                    So what are you waiting for? Start exploring our articles now!"
+                    So what are you waiting for? Start exploring our articles now!
                 </Header.Content>
             </Header>
             <Container>

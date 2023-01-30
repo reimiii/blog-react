@@ -11,11 +11,11 @@ export default function Index({ category, ...props }) {
     const { data: articles, meta, links } = props.articles;
     return (
         <div>
-            <Head title='The articles' />
+            <Head title='Articles' />
             <Header>
-                <Header.Title>The articles</Header.Title>
+                <Header.Title>Articles</Header.Title>
                 <Header.Subtitle>
-                    Read if you want to learn something new.
+                    Discover New Knowledge: Read These Articles
                 </Header.Subtitle>
             </Header>
 
