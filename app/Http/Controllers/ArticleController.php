@@ -140,6 +140,8 @@ class ArticleController extends Controller
             'category' => fn($category) => $category->select('id', 'name', 'slug')
         ]);
 
+        //return new ArticleSingleResource($currentArticle);
+
         return inertia('Articles/Show', [
             'article' => (new ArticleSingleResource($currentArticle))->additional([
                 'related' => $articles,
