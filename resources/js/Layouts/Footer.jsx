@@ -12,11 +12,10 @@ export default function Footer() {
                         Hi! We are a group of computer science students and full-stack developers. Our main focus is on web development, but we also enjoy improving our skills in other programming languages. We have a shared passion for anime and all things related to it.
                     </p>
                     <p className='font-mono text-sm text-gray-400 mt-10 max-w-lg mx-auto'>
-                        Built with all the love in the world by the{' '}
+                        Created with care by the {' '}
                         <strong className='font-semibold text-white'>
                             {import.meta.env.VITE_APP_NAME}
-                        </strong>{' '}
-                        team with the help of our author.
+                        </strong>{' '} team, and with contributions from our talented authors.
                     </p>
 
                     <p className='mt-8 text-gray-400 font-mono text-xs'>

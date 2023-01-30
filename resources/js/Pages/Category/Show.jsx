@@ -15,7 +15,7 @@ export default function Show({ category, ...props }) {
             <Header>
                 <Header.Title>{category.name}</Header.Title>
                 <Header.Subtitle>
-                    Halaman ini akan menampilkan tentang {category.name}
+                    This page displays information about our <span className='font-bold text-blue-500'>{category.name}</span>. Get ready to explore and read our latest articles!
                 </Header.Subtitle>
             </Header>
 

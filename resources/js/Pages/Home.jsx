@@ -13,7 +13,7 @@ export default function Home({ articles }) {
             <Header>
                 <Header.Title>
                     Welcome to our{' '}
-                    <span className='font-bold text-blue-500'>Blog</span>
+                    <span className='font-bold text-blue-500'>RnD Center</span>
                 </Header.Title>
                 <Header.Subtitle>
                     Here, you'll discover useful tips and tricks about programming and technology.
