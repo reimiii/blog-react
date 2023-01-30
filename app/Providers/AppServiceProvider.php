@@ -4,6 +4,7 @@ namespace App\Providers;
 
 use Illuminate\Database\Eloquent\Model;
 use Illuminate\Http\Resources\Json\JsonResource;
+use Illuminate\Routing\UrlGenerator;
 use Illuminate\Support\ServiceProvider;
 
 class AppServiceProvider extends ServiceProvider
@@ -23,9 +24,15 @@ class AppServiceProvider extends ServiceProvider
      *
      * @return void
      */
-    public function boot()
+    public function boot(UrlGenerator $urlGenerator)
     {
         JsonResource::withoutWrapping();
-        Model::preventsLazyLoading(! app()->isProduction());
+        Model::preventsLazyLoading(!app()->isProduction());
+
+        if (config('app.env') === 'production') {
+            $urlGenerator->forceScheme('https');
+        };
+
+
     }
 }
