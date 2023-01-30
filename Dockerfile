@@ -1,6 +1,8 @@
 FROM richarvey/nginx-php-fpm:latest
 
-RUN apk add --no-cache nodejs
+# setup node js source will be used later to install node js
+RUN curl -sL https://deb.nodesource.com/setup_16.x -o nodesource_setup.sh
+RUN ["sh",  "./nodesource_setup.sh"]
 
 COPY . .
 
