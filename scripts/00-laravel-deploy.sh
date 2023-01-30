@@ -15,5 +15,8 @@ php artisan view:cache
 echo "Running migrations..."
 php artisan migrate:fresh --seed --force
 
+echo "Running Storage Link..."
+php artisan storage:link --force
+
 echo "Running composer autoloader optimize"
 composer install --optimize-autoloader --no-dev --working-dir=/var/www/html
