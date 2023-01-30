@@ -54,7 +54,7 @@ return [
     |
     */
 
-    'url' => env('APP_URL', 'https://blog-rnd.onrender.com'),
+    'url' => env('APP_URL', 'https://rndcenter.eu.org'),
 
     'asset_url' => env('ASSET_URL'),
 
